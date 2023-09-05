@@ -224,3 +224,12 @@ for each row
   
 set @sum = 0;
 insert into account values ();
+
+transactions
+set @autocommit = 0;
+
+START TRANSACTION
+      select @orderNumbers:= max(orderNumbers)=1
+      from orders;
+      
+      select @orderNumbers as Number;
