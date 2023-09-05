@@ -220,14 +220,11 @@ delimiter ;
 create trigger check_amount before insert on account
 for each row 
   set @sum = @sum+new.amount;
-  
-  
-set @sum = 0;
+  set @sum = 0;
 insert into account values ();
 
-transactions
+--transactions
 set @autocommit = 0;
-
 START TRANSACTION
       select @orderNumbers:= max(orderNumbers)=1
       from orders;
