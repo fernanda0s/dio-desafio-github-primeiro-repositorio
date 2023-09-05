@@ -138,3 +138,24 @@ create table if not exists customer(
 alter table customer_management.customer add index index_email(email); 
 --Retorno do index
 show index from customer;
+
+--DESAFIO SQL SPECIALIST/2023 Criação de Procedure (INSERT)
+delimiter \\
+create procedure procedure_insert(
+       in nome_p varchar(),
+       in email_p varchar(),
+       in senha_p varchar ()
+)
+begin
+       if(lenght(senha_p)<10 and lenght(senha_p)>7)then
+         insert into user(nome,email,senha,data_cadastro) values(nome_p,email_p,mds5(senha_p),row());
+         select * from user;
+       else
+         select 'Fornece outra senha' as Message_error;
+       end if;
+end \\
+delimiter ;
+
+-- (UPDATE)
+
+-- (DELETE)
