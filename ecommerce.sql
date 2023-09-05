@@ -159,3 +159,68 @@ delimiter ;
 -- (UPDATE)
 
 -- (DELETE)
+
+--View
+--Personalização de acesso
+--User creation
+use mysql;
+show tables;
+select * from user;
+
+create user 'geral' @localhost identified by '123456789';
+grant all privileges on testuser.view_ex to 'geral'@localhost;
+
+show databases;
+show tables from company_constraints;
+use company_constraints;
+
+create view employees_salary_27000_view as
+       select concat(Fname, Minit, Lname) as Name, Salary, Dno as Dept_number from employee
+       where Salary > 26999;
+       
+select * from employees_salary_27000_view;
+
+create view employees_salary_view;
+       select concat(Fnama, Minit, Lname) as Name, e.Dno as Departament, d.Dependendt_name as Dependent
+       from employee e
+       inner join dependent d on e.Ssn = d.Essn;
+       
+select * from employees_departament_view;
+
+--Trigger
+--Trigger tipo: before insert
+delimiter \\
+create trigger mgr_dept_check before insert on employee
+for each row
+  begin
+    case new.dno
+      when 1 then set new.super_ssn = 'valor';
+      when 2 then set new.super_ssn = null;
+      when 3 then set new.super_ssn = null;
+      when 4 then set new.super_ssn = 'valor';
+      when 5 then set new.super_ssn = 'valor';
+    end case;
+  end //
+delimiter;
+
+show triggers from company_constraints;
+--Trigger tipo: after trigger
+delimiter \\
+create trigger null_value_check after insert on empolyee
+for each row
+    if(new.bdate is null) then 
+           insert into user_messages(message, ssn) values('Update your bdate, please.', new.ssn);
+    else
+           insert into user_messages(message, ssn) values('Error', new.ssn);
+    end if;
+//
+delimiter ;
+
+--Trigger tipo: before update trigger
+create trigger check_amount before insert on account
+for each row 
+  set @sum = @sum+new.amount;
+  
+  
+set @sum = 0;
+insert into account values ();
