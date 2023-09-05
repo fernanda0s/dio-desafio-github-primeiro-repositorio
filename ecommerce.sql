@@ -93,3 +93,48 @@ constraint unique_CNPJ_vendedor unique (CNPJ),
 constraint unique_CPF_vendedor unique (CPF)
 );
 
+--Criação de index dasafio SQL SPECIALIST
+
+create database if not exists customer_management;
+use customer_management;
+
+create table if not exists customer(
+       id_customer int auto_increment primary key,
+       customer_name varchar(30),
+       email varchar(30),
+       cpf char(11),
+       credit_card char(9),
+       contact char(9),
+       address varchar(30)
+);
+--Criação de index
+
+create database if not exists customer_management;
+use customer_management;
+
+create table if not exists customer(
+       id_customer int auto_increment primary key,
+       customer_name varchar(30),
+       email varchar(30),
+       cpf char(11),
+       credit_card char(9),
+       contact char(9),
+       address varchar(30)
+);
+--DESAFIO SQL SPECIALIST/2023 Criação de INDEX
+create database if not exists customer_management;
+use customer_management;
+
+create table if not exists customer(
+       id_customer int auto_increment primary key,
+       customer_name varchar(30),
+       email varchar(30),
+       cpf char(11),
+       credit_card char(9),
+       contact char(9),
+       address varchar(30)
+);
+--Criação de index
+alter table customer_management.customer add index index_email(email); 
+--Retorno do index
+show index from customer;
